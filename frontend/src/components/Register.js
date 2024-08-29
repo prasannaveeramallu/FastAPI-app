@@ -54,7 +54,7 @@ const handleRole = event  => {
             "role": role
           
         }
-        console.log(username)
+        console.log(JSON.stringify(newUser))
         fetch("http://127.0.0.1:8000/auth/", {
             mode: 'no-cors',
           method: "POST",
