@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
-
+import axios from 'axios'
+import './Register.css'
 
 
 
@@ -45,21 +46,16 @@ const handleRole = event  => {
    
     
  const registerBtn = () => {
-    const newUser = {
-            "username": username,
+    
+       
+        axios
+        .post("http://127.0.0.1:8000/auth/", {
+           "username": username,
             "email": email,
             "first_name": firstname,
             "last_name": lastname,
             "password": password,
             "role": role
-          
-        }
-        console.log(JSON.stringify(newUser))
-        fetch("http://127.0.0.1:8000/auth/", {
-            mode: 'no-cors',
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newUser)
         
         }).then((res) => {
             console.log(res)
@@ -83,7 +79,10 @@ const handleRole = event  => {
         <input type='password'  onChange={handlePassword}/>
         <p>Role:</p>
         <input type='text'  onChange={handleRole}/>
-        <button type='submit' onClick={registerBtn}>Register user</button>
+        <div className='register-btn'>
+        <button onClick={registerBtn}>Register user</button>
+        </div>
+       
     </div>
   )
 }
